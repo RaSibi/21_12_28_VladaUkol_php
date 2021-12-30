@@ -46,7 +46,7 @@
             <li> <a href="ScriptVkladani.php">Filtrování, řazení, stránkování</a></li>
         </ul>
         <div class="container text-center mt-5 shadow p-3 mb-5 bg-warning rounded">
-            <h2>Nástěnka otužilců</h2>
+            <h2>Nástěnka ostravských otužilců</h2>
             <!-- <form action="index.php" method="POST" id="ContactMe"> -->
             <form action="index.php" method="post" id="ContactMe">
                 <div class="form-row pt-5">
