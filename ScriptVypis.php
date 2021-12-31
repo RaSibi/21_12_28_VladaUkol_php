@@ -29,7 +29,20 @@
     // } else {
     //     $query = 'SELECT * FROM seznam';
     // }
-    $query = 'SELECT * FROM hlavni';
+    if (isset($_POST['filtrname']) && $_POST['filtrname'] != '') {
+        $nick = addslashes($_POST['filtrname']);
+        $query = 'SELECT * FROM hlavni WHERE nickname = "' . $nick . '" ';
+    } else if (isset($_POST['filtremail']) && $_POST['filtremail'] != '') {
+        $email = addslashes($_POST['filtremail']);
+        $query = 'SELECT * FROM hlavni WHERE email = "' . $email . '" ';
+    } else if (isset($_POST['radit']) && $_POST['radit'] != '') {
+        $razeni = addslashes($_POST['radit']);
+        $query = 'SELECT * FROM hlavni ORDER BY "' . $razeni . '" ';
+        //$query = 'SELECT * FROM hlavni ORDER BY $razeni';
+    } else {
+        $query = 'SELECT * FROM hlavni';
+    }
+    //$query = 'SELECT * FROM hlavni';
 
     if (!($con = mysqli_connect($url, $jmeno, $heslo, $db)))
         die("Nelze se pripojit k DB serveru! </body></html>");
@@ -37,7 +50,7 @@
     if (!(mysqli_query($con, "SET NAMES utf8")))
         die("Nastaveni znakove sady se nezdarilo! </body></html>");
 
-
+    echo $query;
     if (!($vysledek = mysqli_query($con, $query)))
         die("Nelze provest dotaz! </body></html>");
 
@@ -46,6 +59,7 @@
     <section id="" class="pt-3">
         <ul>
             <li><a href="index.php">Zpět na hlavní formulář</a></li>
+            <li><a href="ScriptVypis.php">Přehled příspěvků na nástěnce</a></li>
             <li> <a href="ScriptVkladani.php">Filtrování, řazení, stránkování</a></li>
         </ul>
 
@@ -76,8 +90,28 @@
                 </table>
             </form>
             <br>
-
         </div>
+
+        <div class="container shadow p-3 mb-5 bg-light rounded text-left mt-5">
+            <h3>Filtrování příspěvků</h3>
+            <form action="ScriptVypis.php" method="post">
+                <input type="text" name="filtrname"> Jméno / Přezdívka <br>
+                <input type="text" name="filtremail"> Email <br>
+                <hr>
+                <button type="submit">Vyhledej</button>
+                <button type="reset">Reset</button>
+            </form>
+        </div>
+        <div class="container shadow p-3 mb-5 bg-light rounded text-left mt-5">
+            <h3>Řazení příspěvků</h3>
+            <form action="ScriptVypis.php" method="post">
+                <input type="radio" name="radit" value="nickname"> Jméno / Přezdívka <br>
+                <input type="radio" name="radit" value="email"> Email <br>
+                <hr>
+                <button type="submit">Řadit</button>
+            </form>
+        </div>
+
     </section>
 </body>
 
