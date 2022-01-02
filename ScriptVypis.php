@@ -7,14 +7,14 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
-    <title>Přehled knih</title>
+    <title>Výpis příspěvků</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
 </head>
 
 <body>
     <?php
-    require 'config.php';
+    require 'phpconfig.php';
 
     $queryUvod = 'SELECT h.nickname, h.email, j.popis AS id_jezero, r.popis AS id_reka, h.klidna_voda, h.tekouci_voda, h.sprcha, h.sauna, text
         FROM hlavni h
