@@ -12,7 +12,7 @@
 
 <body>
     <?php
-    require 'config.php';
+    require 'phpconfig.php';
 
     //podminka pro navrat na stranku formulare
     if (isset($_POST['nick'])) {
