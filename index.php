@@ -13,8 +13,22 @@
 <body>
     <?php
     require 'config.php';
-    
+
+    //podminka pro navrat na stranku formulare
     if (isset($_POST['nick'])) {
+        
+        if (!(isset($_POST['klidna']))) {
+            $_POST['klidna'] = 0;
+        }
+        if (!(isset($_POST['tekouci']))) {
+            $_POST['tekouci'] = 0;
+        }
+        if (!(isset($_POST['sprcha']))) {
+            $_POST['sprcha'] = 0;
+        }
+        if (!(isset($_POST['sauna']))) {
+            $_POST['sauna'] = 0;
+        }
 
         if (!($con = mysqli_connect($url, $jmeno, $heslo, $db))) {
             die("Nelze se pripojit k DB serveru! </body></html>");
@@ -43,7 +57,7 @@
     <section id="" class="pt-3">
         <ul>
             <li><a href="ScriptVypis.php">Přehled příspěvků na nástěnce</a></li>
-            <li> <a href="ScriptVkladani.php">Filtrování, řazení, stránkování</a></li>
+            <!-- <li> <a href="ScriptVkladani.php">Filtrování, řazení, stránkování</a></li> -->
         </ul>
         <div class="container text-center mt-5 shadow p-3 mb-5 bg-warning rounded">
             <h2>Nástěnka ostravských otužilců</h2>
